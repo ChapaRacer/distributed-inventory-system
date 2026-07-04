@@ -9,7 +9,7 @@ spring:
         username: ${SPRING_DATASOURCE_USERNAME:warehouse_user}
         password: ${SPRING_DATASOURCE_PASSWORD:warehouse_pass}
     jpa:
-        hiberante:
+        hibernate:
             ddl-auto: validate
         show-sql: true
         properties:
