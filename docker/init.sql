@@ -54,3 +54,22 @@ CREATE TABLE IF NOT EXISTS order.order_items (
     quantity INT NOT NULL CHECK (quantity > 0),
     unit_price DECIMAL(10, 2) NOT NULL
 );
+
+-- Seed Data
+
+INSERT INTO inventory.warehouses (name, location)
+VALUES ('Main Warehouse', 'Mexico City, CDMX')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO inventory.products (sku, name, description, unit_price, category) VALUES
+    ('LAPTOP-PRO-16', 'Laptop Pro 16"', 'High-performance laptop for developers', 25000.00, 'Electronics'),
+    ('MOUSE-WIRELESS', 'Wireless Mouse', 'Ergonomic wireless mouse', 450.00, 'Peripherals'),
+    ('KEYBOARD-MECH', 'Mechanical Keyboard', 'Tactile switches, TKL layout', 1200.00, 'Peripherals'),
+    ('MONITOR-27-4K', '27" 4K Monitor', 'IPS panel, USB-C', 8500.00, 'Electronics'),
+    ('HDMI-CABLE-2M', 'HDMI Cable 2m', 'HDMI 2.1 certified', 180.00, 'Accessories')
+ON CONFLICT (sku) DO NOTHING;
+
+INSERT INTO inventory.stock (product_id, warehouse_id, quantity, low_stock_threshold)
+SELECT p.id, 1, 50, 10
+FROM inventory.products p
+ON CONFLICT (product_id, warehouse_id) DO NOTHING;
