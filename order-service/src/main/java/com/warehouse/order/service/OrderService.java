@@ -89,7 +89,7 @@ public class OrderService {
     }
 
     private String generateOrderNumber() {
-        String date ? LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
         int suffix = ThreadLocalRandom.current().nextInt(1000, 9999);
         String candidate = "ORD-" + date + "-" + suffix;
 
@@ -111,7 +111,7 @@ public class OrderService {
                 .unitPrice(item.getUnitPrice())
                 .subtotal(item.getSubtotal())
                 .build())
-            .collect(Collector.toList());
+            .collect(Collectors.toList());
 
         return OrderDto.Response.builder()
             .id(order.getId())

@@ -19,7 +19,7 @@ public class OrderPlacedEvent {
     private String orderNumber;
     private List<OrderItemEvent> items;
     private BigDecimal totalAmount;
-    private LocalDateTime ocurredAt;
+    private LocalDateTime occurredAt;
 
     @Data
     @Builder
