@@ -23,5 +23,5 @@ public class StockUpdatedEvent {
     private Integer quantityDelta;
     private String reason;
     private boolean belowThreshold;
-    private LocalDateTime ocurredAt;
+    private LocalDateTime occurredAt;
 }
